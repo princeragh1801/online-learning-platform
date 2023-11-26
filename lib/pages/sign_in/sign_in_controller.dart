@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ulearning_app/common/values/constant.dart';
 import 'package:ulearning_app/common/widgets/flutter_toast.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 
 class SignInController {
@@ -30,30 +33,30 @@ class SignInController {
                   email: emailAddress, password: password);
 
           final user = credentials.user;
-          if (user == null) {
-            //
-            toastInfo(message: "You don't exist");
-          }
           if (user != null) {
-            //
-            // ignore: use_build_context_synchronously
-            Navigator.of(context).pushNamedAndRemoveUntil("applicationPage", (route)=> false);
-            toastInfo(message: "User exist");
-          }
-
-          if (!user!.emailVerified) {
-            //
-            toastInfo(message: "You need to verify your email address");
+            if (user.emailVerified) {
+              Global.storageService
+                  .setString(AppConstants.STORAGE_USER_PROFILE_KEY, "12345");
+              // ignore: use_build_context_synchronously
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("/application", (route) => false);
+              toastInfo(message: "Login successfully");
+            } else if (!user.emailVerified) {
+              toastInfo(message: "You need to verify your email address");
+            }
           } else {
             toastInfo(message: "You're not the user of this app");
           }
-        } on FirebaseAuthException catch (e) {
+        } on FirebaseException catch (e) {
+          print(e.code);
           if (e.code == 'user-not-found') {
             toastInfo(message: "User not found");
           } else if (e.code == 'wrong-password') {
             toastInfo(message: "You entered wrong password");
           } else if (e.code == 'invalid-email') {
             toastInfo(message: "Check the email");
+          } else {
+            toastInfo(message: "Check the entered details");
           }
         }
       }

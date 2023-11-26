@@ -10,3 +10,4 @@ Widget buildPage(int index) {
   ];
   return widgets[index];
 }
+

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/colors.dart';
+import 'package:ulearning_app/common/values/constant.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_event.dart';
 
 import 'bloc/welcome_bloc.dart';
@@ -126,8 +128,13 @@ class _WelcomePageState extends State<WelcomePage> {
                   curve: Curves.decelerate);
             } else {
               // jump to a new page
+              // this is the first time we enter to the app
+              Global.storageService
+                  .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+
+              print('The value is ${Global.storageService.getDeviceFirstOpen()}');
               Navigator.of(context)
-                  .pushNamedAndRemoveUntil("signIn", (route) => false);
+                  .pushNamedAndRemoveUntil("/sign_in", (route) => false);
             }
           },
           child: Container(
@@ -137,7 +144,7 @@ class _WelcomePageState extends State<WelcomePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15.w)),
                 color: AppColors.primaryElement,
-                boxShadow: const[
+                boxShadow: const [
                   BoxShadow(
                       color: AppColors.primaryFourElementText,
                       spreadRadius: 1,

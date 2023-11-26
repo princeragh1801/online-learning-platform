@@ -1,17 +1,15 @@
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ulearning_app/pages/application/application_page.dart';
+import 'package:ulearning_app/common/routes/pages.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/pages/bloc_providers.dart';
 
-import 'firebase_options.dart';
+
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Global.init();
   runApp(const MyApp());
 }
 
@@ -35,7 +33,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const ApplicationPage(),
+          // home: const ApplicationPage(),
+
           // this is the one method for routing
           // routes: {
           //   "signIn": (context) => const SignIn(),
@@ -43,11 +42,8 @@ class MyApp extends StatelessWidget {
           //   "applicationPage":(context) => const ApplicationPage(),
           // },
 
-
           // we want to separate routes so we have to generate them
-          onGenerateRoute: (settings) {
-            
-          },
+          onGenerateRoute: AppPages.generateRouteSettings,
         ),
       ),
     );
