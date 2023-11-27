@@ -62,6 +62,7 @@ Widget buildTextField(String text, String textType, String iconName, void Functi
               keyboardType: TextInputType.multiline,
               obscureText: textType == 'password' ? true : false,
               decoration: InputDecoration(
+                contentPadding: const EdgeInsets.fromLTRB(10, 5, 0, 5),
                 hintText: text,
                 hintStyle: const TextStyle(color: AppColors.primaryThreeElementText),
                 border: const OutlineInputBorder(

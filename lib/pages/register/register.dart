@@ -37,7 +37,7 @@ class _RegisterState extends State<Register> {
                     Container(
                       padding: EdgeInsets.only(left: 25.w, right: 25.w),
                       margin: EdgeInsets.only(
-                        top: 66.h,
+                        top: 60.h,
                       ),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,6 +73,10 @@ class _RegisterState extends State<Register> {
                                   .read<RegisterBloc>()
                                   .add(ConfirmPasswordEvent(value));
                             }),
+                            Container(
+                              margin: EdgeInsets.only(top: 25.h),
+                              child: reusableText('By creating an account you have to agree with our terms & conditions'),
+                            ),
                             SizedBox(
                               height: 30.h,
                             ),

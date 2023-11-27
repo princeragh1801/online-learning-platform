@@ -24,7 +24,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
           color: AppColors.primaryBackground,
           child: SafeArea(
             child: Scaffold(
-              appBar: AppBar(),
+              // appBar: AppBar(),
               body: buildPage(context.read<AppBloc>().state.index),
               bottomNavigationBar: Container(
                 height: 58.h,
@@ -48,13 +48,7 @@ class _ApplicationPageState extends State<ApplicationPage> {
                   showUnselectedLabels: false,
                   selectedItemColor: AppColors.primaryElement,
                   unselectedItemColor: AppColors.primaryFourElementText,
-                  items: [
-                    _buildNavBarItem('home'),
-                    _buildNavBarItem('search2'),
-                    _buildNavBarItem('play-circle1'),
-                    _buildNavBarItem('message-circle'),
-                    _buildNavBarItem('person2'),
-                  ],
+                  items: buildTabs,
                 ),
               ),
             ),
@@ -62,25 +56,5 @@ class _ApplicationPageState extends State<ApplicationPage> {
         );
       },
     );
-  }
-
-  BottomNavigationBarItem _buildNavBarItem(String iconName) {
-    return BottomNavigationBarItem(
-        activeIcon: SizedBox(
-          height: 15.w,
-          width: 15.h,
-          child: Image.asset(
-            'assets/icons/$iconName.png',
-            color: AppColors.primaryElement,
-          ),
-        ),
-        label: 'Search',
-        icon: SizedBox(
-          height: 15.w,
-          width: 15.w,
-          child: Image.asset(
-            'assets/icons/$iconName.png',
-          ),
-        ));
   }
 }
