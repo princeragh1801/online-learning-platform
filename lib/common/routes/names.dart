@@ -1,5 +1,4 @@
 class AppRoutes {
-
   // welcome or onboarding page
   static const INITIAL = '/';
 
@@ -11,4 +10,7 @@ class AppRoutes {
 
   // register page
   static const REGISTER = '/register';
+
+  // home page
+  static const HOME_PAGE = '/home_page';
 }
