@@ -229,10 +229,11 @@ Widget _menuTextItem(String text, {Color color = Colors.white}) {
 
 Widget courseGrid() {
   return Container(
+    padding: EdgeInsets.all(12.w),
     height: 100,
     width: 100,
     decoration: BoxDecoration(
-        color: Colors.red,
+        // color: Colors.red,
         borderRadius: BorderRadius.all(Radius.circular(12.w)),
         image: const DecorationImage(
             image: AssetImage('assets/icons/image(4).png'), fit: BoxFit.cover)),
@@ -256,10 +257,11 @@ Widget courseGrid() {
         overflow: TextOverflow.fade,
         maxLines: 1,
         textAlign: TextAlign.left,
+        softWrap: false,
         style: TextStyle(
           fontSize: 8.sp,
-          color: AppColors.primaryElementText,
-          fontWeight: FontWeight.bold,
+          color: AppColors.primaryFourElementText,
+          fontWeight: FontWeight.normal,
         ),
       )
     ]),
