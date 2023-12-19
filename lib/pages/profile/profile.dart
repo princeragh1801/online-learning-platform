@@ -22,7 +22,10 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              profileIconAndEditButton()
+              SizedBox(height: 20.h,),
+              profileIconAndEditButton(),
+              SizedBox(height: 30.h,),
+              buildCustomButton(),
             ]),
       )),
     );

@@ -15,13 +15,7 @@ AppBar buildAppBar() {
               height: 12.h,
               child: Image.asset("assets/icons/menu.png"),
             ),
-            Text(
-              "Profile",
-              style: TextStyle(
-                  color: AppColors.primaryText,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.sp),
-            ),
+            _reusableText("Profile"),
             SizedBox(
               width: 24.w,
               height: 24.h,
@@ -47,5 +41,59 @@ Widget profileIconAndEditButton() {
       width: 25.w,
       height: 25.h,
     ),
+  );
+}
+
+var _buttonInfo = <String, String>{
+  "Settings" : "settings.png",
+  "Payment Details" : "credit-card.png",
+  "Achievements" : "award.png",
+  "Love" : "heart(1).png",
+  "Remainders" : "cube.png"
+};
+
+Widget buildCustomButton() {
+  return Column(
+    children: [
+      ...List.generate(_buttonInfo.length, (index) => Container(
+        margin: EdgeInsets.only(left: 30.w),
+        child: 
+              GestureDetector(
+              onTap: () {
+                
+              },
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: Row(children: [
+                  Container(
+                    height: 40.w,
+                    width: 40.w,
+                    padding: EdgeInsets.all(8.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.w)),
+                      color: AppColors.primaryElement,
+                    ),
+                    child: Image(image: AssetImage('assets/icons/${_buttonInfo.values.elementAt(index)}')),
+                  ),
+                  SizedBox(
+                    width: 20.w,
+                  ),
+                  _reusableText(_buttonInfo.keys.elementAt(index))
+                ]),
+              ),
+        ),
+      ))
+      
+    ],
+  );
+}
+
+Widget _reusableText(String text) {
+  return Text(
+    text,
+    style: TextStyle(
+        color: AppColors.primaryText,
+        fontWeight: FontWeight.bold,
+        fontSize: 16.sp),
   );
 }
